@@ -1,5 +1,5 @@
 *{
-    /*border: 1px solid #0066cc;*/
+    /*border: 1px solid red;*/
     font-family: 'Public Sans', sans-serif;
     padding: 0;
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 .logo{
-    width: 120px;
+    width: 35px;
 }
 
 .middle{
@@ -18,22 +18,36 @@
 
 .main-outer-container{
     width: 100%;
-    height: 100vh;
+    height: 95vh;
     display: flex;
     justify-content: center;
 }
 
 .login-container{
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 95vh;
 }
 
 .login-header{
-    width: 100%;
+    width: auto;
     height: 90px;
     display: flex;
     align-items: center;
     padding-left: 30px;
+}
+
+.login-header-text{
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.login-content-container{
+    width: 100%;
+    height: 75vh;
+}
+
+.login-outer{
+    width: 35%;
+    height: 400px;
 }
