@@ -14,7 +14,7 @@ const AuthLogin = () => {
                 <div className="login-content-container middle">
                     <div className="login-outer">
                         <Card>
-                            <div>sss</div>
+                            <LoginPage/>
                         </Card>
                     </div>
                 </div>

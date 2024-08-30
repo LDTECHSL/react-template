@@ -1,0 +1,21 @@
+*{
+    /*border: 1px solid red;*/
+}
+
+.footer{
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.version-txt{
+    font-size: 12px;
+    color: gray;
+    margin-right: 20px;
+}
