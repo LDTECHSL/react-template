@@ -1,26 +1,25 @@
-import "../Common/css/styles.css"
-import LoginPage from "../Pages/LoginPage";
-import logo from "../Assets/Images/logo.png"
-import Card from "../Components/Card";
+import "../Common/css/styles.css";
+import logo from "../Assets/Images/logo.png";
+import { ReactElement } from "react";
+import text from "../Assets/Text/Text.json"
 
-const AuthLogin = () => {
-    return (
-        <div className="main-outer-container">
-            <div className="login-container">
-                <div className="login-header">
-                    <img className="logo" src={logo} alt=""/>
-                    <span className="login-header-text">React</span>
-                </div>
-                <div className="login-content-container middle">
-                    <div className="login-outer">
-                        <Card>
-                            <LoginPage/>
-                        </Card>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+interface Props {
+  children: ReactElement;
 }
 
-export default AuthLogin
+export default function AuthLogin({ children }: Readonly<Props>) {
+  return (
+    <div className="main-outer-container">
+      <div className="login-container">
+        <div className="login-header">
+          <img className="logo" src={logo} alt="" />
+          <span className="login-header-text">{text.authLoginPage.header}</span>
+        </div>
+        <div className="login-content-container middle">
+          <div className="login-outer">{children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
