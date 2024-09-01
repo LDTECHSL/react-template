@@ -4,8 +4,16 @@ import Footer from "../Components/Footer";
 import AuthLogin from "../Layouts/AuthLogin";
 import Card from "../Components/Card";
 import text from "../Assets/Text/Text.json"
+import { useNavigate } from "react-router";
 
-const loginPage = () => {
+const LoginPage = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/dashboard/sample")
+  }
+
   return (
     <AuthLogin>
       <Card>
@@ -41,7 +49,7 @@ const loginPage = () => {
             </div>
           </div>
           <div className="login-head-outer">
-            <Button className="login-btn" variant="contained">
+            <Button className="login-btn" variant="contained" onClick={handleLogin}>
             {text.loginPage.loginButton}
             </Button>
           </div>
@@ -52,4 +60,4 @@ const loginPage = () => {
   );
 };
 
-export default loginPage;
+export default LoginPage;
