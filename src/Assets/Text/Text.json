@@ -9,5 +9,8 @@
         "noAccountText": "Don't have an account?",
         "forgetPasswordText": "Forget password?",
         "loginButton": "Login"
+    },
+    "footer": {
+        "version": "Version : "
     }
 }
