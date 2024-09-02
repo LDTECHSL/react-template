@@ -113,7 +113,7 @@ interface Props {
 export default function Dashboard({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [openSample2, setOpenSample2] = React.useState(false);
-  const [active, setActive] = React.useState(0)
+  const [active, setActive] = React.useState(1)
   const location = useLocation();
   const navigate = useNavigate();
 
