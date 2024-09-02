@@ -112,6 +112,7 @@ interface Props {
 export default function Dashboard({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [openSample2, setOpenSample2] = React.useState(false);
+  const [active, setActive] = React.useState(0)
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -119,15 +120,22 @@ export default function Dashboard({ children }: Readonly<Props>) {
     setOpen(!open);
   };
 
+  let isSampleActive = false;
+
   const handleSampleClick = () => {
     navigate("/dashboard/sample");
+    setActive(1)
   };
 
   const handleSample2Click = () => {
     setOpenSample2(!openSample2);
+    if(!openSample2){
+      setActive(2)
+    }else{
+      setActive(0)
+    }
+    
   };
-
-  const isSampleActive = location.pathname === '/dashboard/sample';
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -160,11 +168,11 @@ export default function Dashboard({ children }: Readonly<Props>) {
                   {
                     minHeight: 48,
                     px: 2.5,
-                    backgroundColor: index === 0 && isSampleActive ? '#e6f4ff' : 'transparent',
-                    color: index === 0 && isSampleActive ? "#1677ff" : "black",
-                    borderRight: index === 0 && isSampleActive ? "2px solid #1677ff" : "none",
+                    backgroundColor: index === (active-1) ? '#e6f4ff' : 'transparent',
+                    color: index === (active-1) ? "#1677ff" : "black",
+                    borderRight: index === (active-1) ? "2px solid #1677ff" : "none",
                     '&:hover': {
-                      backgroundColor: index === 0 && isSampleActive ? '#e6f4ff' : 'transparent',
+                      backgroundColor: index === (active-1) ? '#e6f4ff' : 'transparent',
                     }
                   },
                   open
@@ -181,7 +189,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
                     {
                       minWidth: 0,
                       justifyContent: 'center',
-                      color: index === 0 && isSampleActive ? "#1677ff" : "black"
+                      color: index === (active-1) ? "#1677ff" : "black"
                     },
                     open
                       ? {
