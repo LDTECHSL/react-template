@@ -21,6 +21,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import "../Common/css/styles.css";
 import { HomeOutlinedIcon, MenuIcon } from '../Assets/Icons/Icons';
 import TurnedInNotOutlined from '@mui/icons-material/TurnedInNotOutlined';
+import Footer from '../Components/Footer';
 
 const drawerWidth = 240;
 
@@ -241,6 +242,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
         <DrawerHeader />
         {children}
       </Box>
+      <Footer />
     </Box>
   );
 }
