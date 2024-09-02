@@ -15,7 +15,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { ReactElement } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../Common/css/styles.css";
@@ -113,36 +112,39 @@ interface Props {
 export default function Dashboard({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [openSample2, setOpenSample2] = React.useState(false);
-  const [active, setActive] = React.useState(1)
-  const location = useLocation();
+  const [active, setActive] = React.useState(1);
+  const [activeChild, setActiveChild] = React.useState<number | null>(null); // To track active child item
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
 
-  let isSampleActive = false;
-
   const handleSampleClick = () => {
     navigate("/dashboard/sample");
-    setActive(1)
+    setOpenSample2(false)
+    setActive(1);
+    setActiveChild(null); // Reset child item selection
   };
 
   const handleSample2Click = () => {
     setOpenSample2(!openSample2);
-    if(!openSample2){
-      setActive(2)
-    }else{
-      setActive(0)
+    if (!openSample2) {
+      setActive(2);
+    } else {
+      setActive(0);
     }
-    
+  };
+
+  const handleChildClick = (childIndex: number) => {
+    setActiveChild(childIndex); // Set active child item
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar className='toolbar'>
+        <Toolbar className="toolbar">
           <IconButton
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -150,7 +152,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
             sx={[
               {
                 marginRight: 5,
-              }
+              },
             ]}
           >
             <MenuIcon />
@@ -164,17 +166,17 @@ export default function Dashboard({ children }: Readonly<Props>) {
           {['Sample', 'Sample2'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
-                onClick={index === 0 ? handleSampleClick : index === 1 ? handleSample2Click : handleSampleClick}
+                onClick={index === 0 ? handleSampleClick : handleSample2Click}
                 sx={[
                   {
                     minHeight: 48,
                     px: 2.5,
-                    backgroundColor: index === (active-1) ? '#e6f4ff' : 'transparent',
-                    color: index === (active-1) ? "#1677ff" : "black",
-                    borderRight: index === (active-1) ? "2px solid #1677ff" : "none",
+                    backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
+                    color: index === (active - 1) ? "#1677ff" : "black",
+                    borderRight: index === (active - 1) ? "2px solid #1677ff" : "none",
                     '&:hover': {
-                      backgroundColor: index === (active-1) ? '#e6f4ff' : 'transparent',
-                    }
+                      backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
+                    },
                   },
                   open
                     ? {
@@ -190,7 +192,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
                     {
                       minWidth: 0,
                       justifyContent: 'center',
-                      color: index === (active-1) ? "#1677ff" : "black"
+                      color: index === (active - 1) ? "#1677ff" : "black",
                     },
                     open
                       ? {
@@ -201,7 +203,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
                         },
                   ]}
                 >
-                  {index === 0 ? <HomeOutlinedIcon /> : index === 1 ? <TurnedInNotOutlined/> : ""}
+                  {index === 0 ? <HomeOutlinedIcon /> : <TurnedInNotOutlined />}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
@@ -221,13 +223,19 @@ export default function Dashboard({ children }: Readonly<Props>) {
                 <Collapse in={openSample2} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton>
-                        <ListItemText primary="Child Item 1" />
+                      <ListItemButton onClick={() => handleChildClick(1)}>
+                        <ListItemText
+                          primary="Child Item 1"
+                          sx={{ color: activeChild === 1 ? "#1677ff" : "black" }}
+                        />
                       </ListItemButton>
                     </ListItem>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton>
-                        <ListItemText primary="Child Item 2" />
+                      <ListItemButton onClick={() => handleChildClick(2)}>
+                        <ListItemText
+                          primary="Child Item 2"
+                          sx={{ color: activeChild === 2 ? "#1677ff" : "black" }}
+                        />
                       </ListItemButton>
                     </ListItem>
                     {/* Add more child items as needed */}
