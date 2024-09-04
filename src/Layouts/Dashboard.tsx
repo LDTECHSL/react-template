@@ -21,6 +21,8 @@ import "../Common/css/styles.css";
 import { HomeOutlinedIcon, MenuIcon } from '../Assets/Icons/Icons';
 import TurnedInNotOutlined from '@mui/icons-material/TurnedInNotOutlined';
 import Footer from '../Components/Footer';
+import text from "../Assets/Text/Text.json"
+import logo from "../Assets/Images/logo.png";
 
 const drawerWidth = 240;
 
@@ -160,6 +162,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
+        
         <DrawerHeader />
         <Divider />
         <List>
