@@ -23,9 +23,8 @@ import TurnedInNotOutlined from '@mui/icons-material/TurnedInNotOutlined';
 import Footer from '../Components/Footer';
 import text from "../Assets/Text/Text.json"
 import logo from "../Assets/Images/logo.png";
-import logoutIcon from "../Assets/Images/out.png"
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -167,91 +166,97 @@ export default function Dashboard({ children }: Readonly<Props>) {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        
-        <DrawerHeader />
+      <div className="drawer-header">
+          <img className="drawer-logo" src={logo} alt="" />
+          <span className="login-header-text">{text.authLoginPage.header}</span>
+        </div>
         <List>
-          {['Sample', 'Sample2'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                onClick={index === 0 ? handleSampleClick : handleSample2Click}
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                    backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
-                    color: index === (active - 1) ? "#1677ff" : "black",
-                    borderRight: index === (active - 1) ? "2px solid #1677ff" : "none",
-                    '&:hover': {
-                      backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
-                    },
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
-                      },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: 'center',
-                      color: index === (active - 1) ? "#1677ff" : "black",
-                    },
-                    open
-                      ? {
-                          mr: 3,
-                        }
-                      : {
-                          mr: 'auto',
-                        },
-                  ]}
-                >
-                  {index === 0 ? <HomeOutlinedIcon /> : <TurnedInNotOutlined />}
-                </ListItemIcon>
+  {['Sample', 'Sample2'].map((text, index) => (
+    <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+      <ListItemButton
+        onClick={index === 0 ? handleSampleClick : handleSample2Click}
+        sx={[
+          {
+            minHeight: 48,
+            px: 2.5,
+            backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
+            color: index === (active - 1) ? "#1677ff" : "black",
+            borderRight: index === (active - 1) ? "2px solid #1677ff" : "none",
+            '&:hover': {
+              backgroundColor: index === (active - 1) ? '#e6f4ff' : 'transparent',
+            },
+          },
+          open
+            ? {
+                justifyContent: 'initial',
+              }
+            : {
+                justifyContent: 'center',
+              },
+        ]}
+      >
+        <ListItemIcon
+          sx={[
+            {
+              minWidth: 0,
+              justifyContent: 'center',
+              color: index === (active - 1) ? "#1677ff" : "black",
+            },
+            open
+              ? {
+                  mr: 3,
+                }
+              : {
+                  mr: 'auto',
+                },
+          ]}
+        >
+          {index === 0 ? <HomeOutlinedIcon style={{ fontSize: '20px' }} /> : <TurnedInNotOutlined style={{ fontSize: '20px' }} />}
+        </ListItemIcon>
+        <ListItemText
+          primary={text}
+          primaryTypographyProps={{ fontSize: '14px' }} // Adjusting the font size for the text
+          sx={[
+            open
+              ? {
+                  opacity: 1,
+                }
+              : {
+                  opacity: 0,
+                },
+          ]}
+        />
+        {index === 1 && open ? (openSample2 ? <ExpandLess /> : <ExpandMore />) : null}
+      </ListItemButton>
+      {index === 1 ? (
+        <Collapse in={openSample2} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem sx={{ pl: 6 }}>
+              <ListItemButton onClick={() => handleChildClick(1)}>
                 <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
+                  primary="Child Item 1"
+                  primaryTypographyProps={{ fontSize: '14px' }} // Adjust font size for child items
+                  sx={{ color: activeChild === 1 ? "#1677ff" : "black" }}
                 />
-                {index === 1 && open ? (openSample2 ? <ExpandLess /> : <ExpandMore />) : null}
               </ListItemButton>
-              {index === 1 ? (
-                <Collapse in={openSample2} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleChildClick(1)}>
-                        <ListItemText
-                          primary="Child Item 1"
-                          sx={{ color: activeChild === 1 ? "#1677ff" : "black" }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                    <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleChildClick(2)}>
-                        <ListItemText
-                          primary="Child Item 2"
-                          sx={{ color: activeChild === 2 ? "#1677ff" : "black" }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                    {/* Add more child items as needed */}
-                  </List>
-                </Collapse>
-              ) : null}
             </ListItem>
-          ))}
-        </List>        
+            <ListItem sx={{ pl: 6 }}>
+              <ListItemButton onClick={() => handleChildClick(2)}>
+                <ListItemText
+                  primary="Child Item 2"
+                  primaryTypographyProps={{ fontSize: '14px' }} // Adjust font size for child items
+                  sx={{ color: activeChild === 2 ? "#1677ff" : "black" }}
+                />
+              </ListItemButton>
+            </ListItem>
+            {/* Add more child items as needed */}
+          </List>
+        </Collapse>
+      ) : null}
+    </ListItem>
+  ))}
+</List>
+        
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
