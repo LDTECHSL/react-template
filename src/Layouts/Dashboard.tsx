@@ -16,13 +16,14 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ReactElement } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../Common/css/styles.css";
-import { HomeOutlinedIcon, MenuIcon } from '../Assets/Icons/Icons';
+import { AccountCircleIcon, HomeOutlinedIcon, MenuIcon } from '../Assets/Icons/Icons';
 import TurnedInNotOutlined from '@mui/icons-material/TurnedInNotOutlined';
 import Footer from '../Components/Footer';
 import text from "../Assets/Text/Text.json"
 import logo from "../Assets/Images/logo.png";
+import logoutIcon from "../Assets/Images/out.png"
 
 const drawerWidth = 240;
 
@@ -159,12 +160,15 @@ export default function Dashboard({ children }: Readonly<Props>) {
           >
             <MenuIcon />
           </IconButton>
+          <div className="toolbar-inner">
+            <AccountCircleIcon className='icon-user' />
+            <span className="username">Hi, Dasun Shyaminda</span>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         
         <DrawerHeader />
-        <Divider />
         <List>
           {['Sample', 'Sample2'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
@@ -247,7 +251,8 @@ export default function Dashboard({ children }: Readonly<Props>) {
               ) : null}
             </ListItem>
           ))}
-        </List>
+        </List>        
+        <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

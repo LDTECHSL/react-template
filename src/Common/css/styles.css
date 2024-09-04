@@ -110,3 +110,23 @@
 .toolbar{
     background-color: white;
 }
+
+.toolbar-inner{
+    width: 100%;
+    height: auto;
+    padding: 5px 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.icon-user{
+    color: gray;
+    font-size: 30px !important;
+}
+
+.username{
+    font-size: 15px;
+    color: black;
+    margin: 0 10px;
+}
