@@ -22,13 +22,15 @@ import {
   AccountCircleIcon,
   HomeOutlinedIcon,
   MenuIcon,
+  SpeedOutlinedIcon,
+  WidgetsOutlinedIcon,
 } from "../Assets/Icons/Icons";
 import TurnedInNotOutlined from "@mui/icons-material/TurnedInNotOutlined";
 import Footer from "../Components/Footer";
 import text from "../Assets/Text/Text.json";
 import logo from "../Assets/Images/logo.png";
 
-const drawerWidth = 250;
+const drawerWidth = 260;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -174,8 +176,13 @@ export default function Dashboard({ children }: Readonly<Props>) {
           <img className="drawer-logo" src={logo} alt="" />
           <span className="login-header-text">{text.authLoginPage.header}</span>
         </div>
+        {open && (
+          <div className="dashboard-title-outer">
+          <span className="dashboard-title">Dashboard</span>
+        </div>
+        )}        
         <List>
-          {["Sample", "Sample2"].map((text, index) => (
+          {["Dashboard", "Components"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={index === 0 ? handleSampleClick : handleSample2Click}
@@ -211,7 +218,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
                     },
                     open
                       ? {
-                          mr: 3,
+                          mr: 2,
                         }
                       : {
                           mr: "auto",
@@ -219,9 +226,9 @@ export default function Dashboard({ children }: Readonly<Props>) {
                   ]}
                 >
                   {index === 0 ? (
-                    <HomeOutlinedIcon style={{ fontSize: "20px" }} />
+                    <SpeedOutlinedIcon style={{ fontSize: "20px" }} />
                   ) : (
-                    <TurnedInNotOutlined style={{ fontSize: "20px" }} />
+                    <WidgetsOutlinedIcon style={{ fontSize: "20px" }} />
                   )}
                 </ListItemIcon>
                 <ListItemText

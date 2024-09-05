@@ -5,6 +5,11 @@ interface Props {
   children: ReactElement;
 }
 
+
 export default function Card({ children }: Readonly<Props>) {
   return <div className="card">{children}</div>;
+}
+
+export function MainCard({children}: Readonly<Props>){
+  return <div className="mainCard">{children}</div>
 }
