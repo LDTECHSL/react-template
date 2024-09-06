@@ -140,7 +140,7 @@ export default function Navbar({ children }: Readonly<Props>) {
   };
 
   const handleSampleClick = () => {
-    navigate("/dashboard/sample");
+    navigate("/dashboard");
     setOpenSample2(false);
     setActive(1);
     setActiveChild(null); // Reset child item selection
