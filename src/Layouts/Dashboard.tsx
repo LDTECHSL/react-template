@@ -84,7 +84,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
@@ -163,8 +162,10 @@ export default function Dashboard({ children }: Readonly<Props>) {
             <MenuIcon />
           </IconButton>
           <div className="toolbar-inner">
-            <AccountCircleIcon className="icon-user" />
-            <span className="username">Hi, Dasun Shyaminda</span>
+            <div className="toolbar-content-inner">
+              <AccountCircleIcon className="icon-user" />
+              <span className="username">Hi, Dasun Shyaminda</span>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
@@ -175,9 +176,9 @@ export default function Dashboard({ children }: Readonly<Props>) {
         </div>
         {open && (
           <div className="dashboard-title-outer">
-          <span className="dashboard-title">Dashboard</span>
-        </div>
-        )}        
+            <span className="dashboard-title">Dashboard</span>
+          </div>
+        )}
         <List>
           {["Dashboard", "Components"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>

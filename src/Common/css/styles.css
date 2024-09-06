@@ -130,6 +130,18 @@
     align-items: center;
 }
 
+.toolbar-content-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.toolbar-content-inner:hover{
+    cursor: pointer;
+    background-color: #1677ff0a;
+}
+
 .icon-user{
     color: #1677ff;
     font-size: 30px !important;
