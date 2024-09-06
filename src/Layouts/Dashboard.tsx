@@ -20,15 +20,14 @@ import { useNavigate } from "react-router-dom";
 import "../Common/css/styles.css";
 import {
   AccountCircleIcon,
-  HomeOutlinedIcon,
   MenuIcon,
   SpeedOutlinedIcon,
   WidgetsOutlinedIcon,
 } from "../Assets/Icons/Icons";
-import TurnedInNotOutlined from "@mui/icons-material/TurnedInNotOutlined";
 import Footer from "../Components/Footer";
 import text from "../Assets/Text/Text.json";
 import logo from "../Assets/Images/logo.png";
+import logoutIcon from "../Assets/Images/power.png"
 
 const drawerWidth = 260;
 
@@ -83,6 +82,7 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -162,10 +162,8 @@ export default function Dashboard({ children }: Readonly<Props>) {
             <MenuIcon />
           </IconButton>
           <div className="toolbar-inner">
-            <div className="toolbar-content-inner">
-              <AccountCircleIcon className="icon-user" />
-              <span className="username">Hi, Dasun Shyaminda</span>
-            </div>
+            <span className="username">Hi, Dasun Shyaminda</span>
+            <img className="logout-icon" src={logoutIcon} alt="" />
           </div>
         </Toolbar>
       </AppBar>
@@ -176,9 +174,9 @@ export default function Dashboard({ children }: Readonly<Props>) {
         </div>
         {open && (
           <div className="dashboard-title-outer">
-            <span className="dashboard-title">Dashboard</span>
-          </div>
-        )}
+          <span className="dashboard-title">Dashboard</span>
+        </div>
+        )}        
         <List>
           {["Dashboard", "Components"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>

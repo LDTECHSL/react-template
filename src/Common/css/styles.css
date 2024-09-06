@@ -130,16 +130,12 @@
     align-items: center;
 }
 
-.toolbar-content-inner{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.logout-icon{
+    width: 25px;
 }
 
-.toolbar-content-inner:hover{
+.logout-icon:hover{
     cursor: pointer;
-    background-color: #1677ff0a;
 }
 
 .icon-user{
@@ -150,7 +146,7 @@
 .username{
     font-size: 15px;
     color: black;
-    margin: 0 10px;
+    margin: 0 20px 0 8px;
 }
 
 .dashboard-title-outer{
