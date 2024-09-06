@@ -114,7 +114,7 @@ interface Props {
   children: ReactElement;
 }
 
-export default function Dashboard({ children }: Readonly<Props>) {
+export default function Navbar({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [openSample2, setOpenSample2] = React.useState(false);
   const [active, setActive] = React.useState(1);

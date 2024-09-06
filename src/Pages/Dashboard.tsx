@@ -1,14 +1,14 @@
 import { MainCard } from "../Components/Card";
-import Dashboard from "../Layouts/Dashboard";
+import Navbar from "../Layouts/Navbar";
 
-export default function Sample() {
+export default function Dashboard() {
   return (
     <div>
-      <Dashboard>
+      <Navbar>
         <MainCard>
           <>Sample</>
         </MainCard>
-      </Dashboard>
+      </Navbar>
     </div>
   );
 }

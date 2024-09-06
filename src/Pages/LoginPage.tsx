@@ -11,7 +11,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate("/dashboard/sample")
+    navigate("/dashboard")
   }
 
   return (
