@@ -1,4 +1,3 @@
-import "../Common/css/dialogbox.css";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -33,12 +32,12 @@ export default function Dialogbox(props: Dialogboxprops) {
       </DialogContent>
       <DialogActions>
         <Button onClick={() => { props.onDisagree(); props.onClose();}}
-            style={{ color: 'green', backgroundColor: 'white'}}
+            style={{ color: '#1677ff', backgroundColor: 'white'}}
             >
             {props.disagreeButtonText}
         </Button>
         <Button onClick={() => { props.onAgree(); props.onClose();}} autoFocus
-            style={{ color: 'green', backgroundColor: 'white'}}
+            style={{ color: '#1677ff', backgroundColor: 'white'}}
             >
             {props.agreeButtonText}
         </Button>

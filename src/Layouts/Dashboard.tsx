@@ -28,6 +28,7 @@ import Footer from "../Components/Footer";
 import text from "../Assets/Text/Text.json";
 import logo from "../Assets/Images/logo.png";
 import logoutIcon from "../Assets/Images/power.png"
+import Dialogbox from "../Components/Dialogbox";
 
 const drawerWidth = 260;
 
@@ -117,7 +118,21 @@ export default function Dashboard({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [openSample2, setOpenSample2] = React.useState(false);
   const [active, setActive] = React.useState(1);
-  const [activeChild, setActiveChild] = React.useState<number | null>(null); // To track active child item
+  const [activeChild, setActiveChild] = React.useState<number | null>(null);
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+  const handleLogout = () => {
+    navigate("/")
+  }
+
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
@@ -146,6 +161,16 @@ export default function Dashboard({ children }: Readonly<Props>) {
 
   return (
     <Box sx={{ display: "flex" }}>
+      <Dialogbox
+        open={isOpen}
+        title="Confirm Logout"
+        content="Are you sure you want to logout? Logging out will end your current session and any unsaved changes may be lost."
+        agreeButtonText="Logout"
+        disagreeButtonText="Cancel"
+        onAgree={handleLogout}
+        onDisagree={handleClose}
+        onClose={handleClose}
+      />
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar className="toolbar">
@@ -163,7 +188,7 @@ export default function Dashboard({ children }: Readonly<Props>) {
           </IconButton>
           <div className="toolbar-inner">
             <span className="username">Hi, Dasun Shyaminda</span>
-            <img className="logout-icon" src={logoutIcon} alt="" />
+            <img onClick={handleOpen} className="logout-icon" src={logoutIcon} alt="" />
           </div>
         </Toolbar>
       </AppBar>
