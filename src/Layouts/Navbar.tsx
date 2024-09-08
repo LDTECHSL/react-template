@@ -19,7 +19,6 @@ import { ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Common/css/styles.css";
 import {
-  AccountCircleIcon,
   MenuIcon,
   SpeedOutlinedIcon,
   WidgetsOutlinedIcon,
