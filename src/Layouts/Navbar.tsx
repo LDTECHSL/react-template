@@ -159,7 +159,7 @@ export default function Navbar({ children }: Readonly<Props>) {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" , minHeight: "100vh", backgroundColor: "#f5f6fab8" }}>
       <Dialogbox
         open={isOpen}
         title="Confirm Logout"
