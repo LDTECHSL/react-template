@@ -184,8 +184,7 @@
     height: auto;
     padding: 5px 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
 }
 
 .stat-cards-inner{

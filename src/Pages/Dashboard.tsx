@@ -13,7 +13,7 @@ export default function Dashboard() {
           </div>
           <div className="space-bar"></div>
           <div className="stat-cards-outer">
-            <div className="stat-cards-inner align-left">
+            <div className="stat-cards-inner">
             <Stat_card 
                 title="Total Page Views" 
                 total="4,42,236" 
@@ -40,7 +40,7 @@ export default function Dashboard() {
                 isTrendingUp={false} 
             />
             </div>
-            <div className="stat-cards-inner align-right">
+            <div className="stat-cards-inner">
             <Stat_card 
                 title="Total Page Views" 
                 total="$35,700" 
