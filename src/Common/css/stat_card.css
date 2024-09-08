@@ -1,6 +1,6 @@
 .stat-outer {
   width: 90%;
-  height: 100px;
+  height: auto;
   padding: 5px;
   background-color: white;
   border-radius: 5px;
@@ -21,4 +21,21 @@
 .stat-title{
     color: gray;
     font-size: 14px;
+}
+
+.stat-content{
+    width: 100%;
+    height: auto;
+    padding: 5px 0;
+    display: flex;
+}
+
+.stat-total{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.stat-footer{
+    font-size: 12px;
+    color: gray;
 }
