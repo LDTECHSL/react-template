@@ -164,14 +164,42 @@
 .dashboard-outer{
     width: 100%;
     height: auto;
-    padding-left: 10px;
 }
 
 .dashboard-header-outer{
     width: 100%;
     height: auto;
-    padding: 10px 0;
+    /*padding: 10px 15px;*/
     display: flex;
     justify-content: left;
     align-items: center;
+}
+
+.space-bar{
+    height: 15px;
+}
+
+.stat-cards-outer{
+    width: 100%;
+    height: auto;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-cards-inner{
+    width: 25%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.align-left{
+    justify-content: left;
+}
+
+.align-right{
+    justify-content: right;
 }

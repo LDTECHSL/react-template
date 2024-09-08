@@ -307,7 +307,7 @@ export default function Navbar({ children }: Readonly<Props>) {
 
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
         <DrawerHeader />
         {children}
       </Box>
