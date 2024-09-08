@@ -7,6 +7,8 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import TurnedInNotOutlinedIcon from '@mui/icons-material/TurnedInNotOutlined';
 import SpeedOutlinedIcon from '@mui/icons-material/SpeedOutlined';
 import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 export {
   MenuIcon,
@@ -17,5 +19,7 @@ export {
   ExpandMore,
   TurnedInNotOutlinedIcon,
   SpeedOutlinedIcon,
-  WidgetsOutlinedIcon
+  WidgetsOutlinedIcon,
+  TrendingDownIcon,
+  TrendingUpIcon
 };
