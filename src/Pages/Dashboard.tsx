@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
+import BasicLineChart from "src/Components/LineChart";
 import "../Common/css/styles.css";
 import Stat_card from "../Components/StatCard";
 import Navbar from "../Layouts/Navbar";
@@ -50,6 +51,7 @@ export default function Dashboard() {
             />
             </div>
           </div>
+          <BasicLineChart/>
         </div>
       </Navbar>
     </div>
