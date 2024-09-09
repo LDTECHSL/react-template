@@ -1,4 +1,3 @@
-import "../Common/css/line_chart.css";
 import * as React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 
@@ -10,7 +9,7 @@ export default function BasicLineChart() {
         { curve: "linear", data: [6, 3, 7, 9.5, 4, 2] },
       ]}
       width={700}
-      height={400}
+      height={350}
     />
   );
 }

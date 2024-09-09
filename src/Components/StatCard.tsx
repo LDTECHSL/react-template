@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { TrendingDownIcon, TrendingUpIcon } from "../Assets/Icons/Icons";
 import "../Common/css/stat_card.css";
 
