@@ -9,13 +9,13 @@ export default function BasicLineChart() {
       series={[
         { 
           type: 'line', 
-          data: [0, 5, 2, 6, 3, 9.3], 
+          data: [0, 500, 200, 600, 300, 930], 
           color: "#00308F",
           label: "Profit"
         },
         { 
           type: 'line', 
-          data: [6, 3, 7, 9.5, 4, 2], 
+          data: [600, 300, 700, 950, 400, 200], 
           color: "orange",
           label: "Cost"
         }
