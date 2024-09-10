@@ -5,6 +5,7 @@ import Stat_card from "../Components/StatCard";
 import Navbar from "../Layouts/Navbar";
 import { MainCard } from "src/Components/Card";
 import PieActiveArc from "src/Components/PieChart";
+import DataTable from "src/Components/Table";
 
 export default function Dashboard() {
   return (
@@ -76,6 +77,17 @@ export default function Dashboard() {
             </MainCard>
           </div>
         </div>
+        <div className="space-bar"></div>
+        <div className="content-title">
+          <span className="content-title-text">Project Details</span>
+        </div>
+        <div className="space-bar"></div>
+        <div className="content-main-outer">
+          <MainCard width="100%">
+            <DataTable />
+          </MainCard>
+        </div>
+        <div className="space-bar"></div>
       </div>
     </Navbar>
   );
