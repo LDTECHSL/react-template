@@ -26,7 +26,7 @@ import {
 import Footer from "../Components/Footer";
 import text from "../Assets/Text/Text.json";
 import logo from "../Assets/Images/logo.png";
-import logoutIcon from "../Assets/Images/power.png"
+import logoutIcon from "../Assets/Images/power.png";
 import Dialogbox from "../Components/Dialogbox";
 
 const drawerWidth = 260;
@@ -83,7 +83,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
@@ -118,19 +117,19 @@ export default function Navbar({ children }: Readonly<Props>) {
   const [openSample2, setOpenSample2] = React.useState(false);
   const [active, setActive] = React.useState(1);
   const [activeChild, setActiveChild] = React.useState<number | null>(null);
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpen = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   const handleClose = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   const handleLogout = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   const navigate = useNavigate();
 
@@ -159,7 +158,9 @@ export default function Navbar({ children }: Readonly<Props>) {
   };
 
   return (
-    <Box sx={{ display: "flex" , minHeight: "100vh", backgroundColor: "#f5f6fa" }}>
+    <Box
+      sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#f5f6fa" }}
+    >
       <Dialogbox
         open={isOpen}
         title="Confirm Logout"
@@ -187,7 +188,12 @@ export default function Navbar({ children }: Readonly<Props>) {
           </IconButton>
           <div className="toolbar-inner">
             <span className="username">Hi, Dasun Shyaminda</span>
-            <img onClick={handleOpen} className="logout-icon" src={logoutIcon} alt="" />
+            <img
+              onClick={handleOpen}
+              className="logout-icon"
+              src={logoutIcon}
+              alt=""
+            />
           </div>
         </Toolbar>
       </AppBar>
@@ -198,9 +204,9 @@ export default function Navbar({ children }: Readonly<Props>) {
         </div>
         {open && (
           <div className="dashboard-title-outer">
-          <span className="dashboard-title">Dashboard</span>
-        </div>
-        )}        
+            <span className="dashboard-title">Dashboard</span>
+          </div>
+        )}
         <List>
           {["Dashboard", "Components"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
@@ -307,10 +313,23 @@ export default function Navbar({ children }: Readonly<Props>) {
 
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 4,
+          transition: (theme) =>
+            theme.transitions.create(["margin", "width"], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.leavingScreen,
+            }),
+          width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
+        }}
+      >
         <DrawerHeader />
         {children}
       </Box>
+
       <Footer />
     </Box>
   );
