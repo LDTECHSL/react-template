@@ -11,7 +11,7 @@ const columns: GridColDef[] = [
   { field: 'price',  headerName: 'Price',   width: 150, },
   {
     field: 'status',
-    headerName: 'Progress',
+    headerName: 'Status',
     width: 150,
     renderCell: (params) => {
       switch (params.value) {
