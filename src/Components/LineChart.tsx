@@ -22,13 +22,14 @@ export default function BasicLineChart() {
       ]}
       xAxis={[
         {
-          data: [1, 2, 3, 4, 5, 6],
-          label: "Month",
+          data: [1, 2, 3, 4, 5, 6], // X-axis labels as integers
+          label: "Months",
+          tickNumber: 6, // Ensures we only show integer ticks
         }
       ]}
       yAxis={[
         {
-          valueFormatter: (value) => `$${value}`
+          valueFormatter: (value) => `$${value}` // Format Y-axis labels with dollar sign
         }
       ]}
     />
