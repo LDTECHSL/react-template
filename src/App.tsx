@@ -1,21 +1,35 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./Pages/LoginPage";
+import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Navbar from "./Layouts/Navbar"; // Adjust the path as needed
 import Dashboard from "./Pages/Dashboard";
-import StatPage from "./Pages/StatPage";
-import DetailsPage from "./Pages/DetailsPage";
+import Stats from "./Pages/StatPage";
+import Details from "./Pages/DetailsPage";
+import Login from "./Pages/LoginPage"; // Import your login page
 import Landing from "./Pages/LandingPage";
 
-function App() {
+const App: React.FC = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/";
+
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/home" element={<Landing />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/projects/stat" element={<StatPage />} />
-      <Route path="/projects/details" element={<DetailsPage />} />
-    </Routes>
+    <>
+      {!isLoginPage ? (
+        <Navbar>
+          <Routes>
+            <Route path="/home" element={<Landing />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects/stat" element={<Stats />} />
+            <Route path="/projects/details" element={<Details />} />
+            {/* Add more routes as needed */}
+          </Routes>
+        </Navbar>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Login />} /> {/* Login page route */}
+        </Routes>
+      )}
+    </>
   );
-}
+};
 
 export default App;

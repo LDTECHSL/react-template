@@ -9,7 +9,6 @@ import DataTable from "src/Components/Table";
 
 export default function Dashboard() {
   return (
-    <Navbar>
       <div className="dashboard-outer">
         <div className="dashboard-header-outer">
           <span className="content-title-text">Dashboard</span>
@@ -89,6 +88,5 @@ export default function Dashboard() {
         </div>
         <div className="space-bar"></div>
       </div>
-    </Navbar>
   );
 }
