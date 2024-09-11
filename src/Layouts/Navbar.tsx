@@ -16,7 +16,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ReactElement } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../Common/css/styles.css";
 import {
   MenuIcon,
@@ -114,7 +114,7 @@ interface Props {
 
 export default function Navbar({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
-  const [openSample2, setOpenSample2] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const [active, setActive] = React.useState(1);
   const [activeChild, setActiveChild] = React.useState<number | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -132,28 +132,53 @@ export default function Navbar({ children }: Readonly<Props>) {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    const path = location.pathname;
+    if (path === "/stat") {
+      setActive(2);
+      setOpen2(true);
+      setActiveChild(1);
+    } else if (path === "/dashboard") {
+      setActive(1);
+      setOpen2(false);
+      setActiveChild(null);
+    } else {
+      setActive(0);
+      setOpen2(false);
+      setActiveChild(null);
+    }
+  }, [location.pathname]);
 
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
 
-  const handleSampleClick = () => {
+  const handleClickDashboard = () => {
     navigate("/dashboard");
-    setOpenSample2(false);
+    setOpen2(false);
     setActive(1);
-    setActiveChild(null); // Reset child item selection
+    setActiveChild(null);
   };
 
-  const handleSample2Click = () => {
-    setOpenSample2(!openSample2);
-    if (!openSample2) {
+  const handleClickProjects = () => {
+    setOpen2(!open2);
+    if (!open2) {
       setActive(2);
     } else {
       setActive(0);
     }
   };
 
-  const handleChildClick = (childIndex: number) => {
+  const handleClickStats = (childIndex: number) => {
+    setActiveChild(childIndex);
+    if (activeChild !== childIndex) {
+      navigate("/stat");
+    }
+  };
+
+  const handleClickDetails = (childIndex: number) => {
     setActiveChild(childIndex);
   };
 
@@ -208,10 +233,10 @@ export default function Navbar({ children }: Readonly<Props>) {
           </div>
         )}
         <List>
-          {["Dashboard", "Components"].map((text, index) => (
+          {["Dashboard", "Projects"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
-                onClick={index === 0 ? handleSampleClick : handleSample2Click}
+                onClick={index === 0 ? handleClickDashboard : handleClickProjects}
                 sx={[
                   {
                     minHeight: 48,
@@ -271,7 +296,7 @@ export default function Navbar({ children }: Readonly<Props>) {
                   ]}
                 />
                 {index === 1 && open ? (
-                  openSample2 ? (
+                  open2 ? (
                     <ExpandLess />
                   ) : (
                     <ExpandMore />
@@ -279,12 +304,12 @@ export default function Navbar({ children }: Readonly<Props>) {
                 ) : null}
               </ListItemButton>
               {index === 1 ? (
-                <Collapse in={openSample2} timeout="auto" unmountOnExit>
+                <Collapse in={open2} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleChildClick(1)}>
+                      <ListItemButton onClick={() => handleClickStats(1)}>
                         <ListItemText
-                          primary="Child Item 1"
+                          primary="Stats"
                           primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
                           sx={{
                             color: activeChild === 1 ? "#1677ff" : "black",
@@ -293,9 +318,9 @@ export default function Navbar({ children }: Readonly<Props>) {
                       </ListItemButton>
                     </ListItem>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleChildClick(2)}>
+                      <ListItemButton onClick={() => handleClickDetails(2)}>
                         <ListItemText
-                          primary="Child Item 2"
+                          primary="Details"
                           primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
                           sx={{
                             color: activeChild === 2 ? "#1677ff" : "black",
