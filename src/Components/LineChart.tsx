@@ -9,7 +9,7 @@ export default function BasicLineChart() {
       series={[
         { 
           type: 'line', 
-          data: [0, 500, 200, 600, 300, 830, 900, 850, 900, 850, 1100, 1200],
+          data: [0, 500, 200, 600, 300, 830, 900, 850, 800, 850, 1100, 1200],
           color: "#00308F",
           label: "Profit"
         },
