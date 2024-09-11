@@ -9,15 +9,26 @@ export default function BasicLineChart() {
       series={[
         { 
           type: 'line', 
-          data: [0, 500, 200, 600, 300, 930], 
+          data: [0, 500, 200, 600, 300, 930],
           color: "#00308F",
           label: "Profit"
         },
         { 
           type: 'line', 
-          data: [600, 300, 700, 950, 400, 200], 
+          data: [600, 300, 700, 950, 400, 200],
           color: "orange",
           label: "Cost"
+        }
+      ]}
+      xAxis={[
+        {
+          data: [1, 2, 3, 4, 5, 6],
+          label: "Month",
+        }
+      ]}
+      yAxis={[
+        {
+          valueFormatter: (value) => `$${value}`
         }
       ]}
     />
