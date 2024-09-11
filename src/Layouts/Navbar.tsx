@@ -19,6 +19,7 @@ import { ReactElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../Common/css/styles.css";
 import {
+  InfoOutlinedIcon,
   MenuIcon,
   SpeedOutlinedIcon,
   WidgetsOutlinedIcon,
@@ -115,7 +116,8 @@ interface Props {
 export default function Navbar({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(false);
-  const [active, setActive] = React.useState(1);
+  const [active, setActive] = React.useState(0);
+  const [active2, setActive2] = React.useState(0);
   const [activeChild, setActiveChild] = React.useState<number | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -134,25 +136,41 @@ export default function Navbar({ children }: Readonly<Props>) {
   const navigate = useNavigate();
   const location = useLocation();
 
-
-  
-
   React.useEffect(() => {
     const path = location.pathname;
     if (path === "/dashboard") {
       setActive(1);
+      setActive2(0);
       setOpen2(false);
       setActiveChild(null);
     } else if (path === "/projects/stat") {
       setActive(2);
+      setActive2(0);
       setOpen2(true);
       setActiveChild(1);
     } else if (path === "/projects/details") {
       setActive(2);
+      setActive2(0);
       setOpen2(true);
       setActiveChild(2);
+    }else if (path === "/about") {
+      setActive2(1);
+      setActive(0);
+      setOpen2(false);
+      setActiveChild(null);
+    }else if (path === "/contact") {
+      setActive2(2);
+      setActive(0);
+      setOpen2(false);
+      setActiveChild(null);
+    }else if (path === "/feedback") {
+      setActive2(3);
+      setActive(0);
+      setOpen2(false);
+      setActiveChild(null);
     } else {
       setActive(0);
+      setActive2(0);
       setOpen2(false);
       setActiveChild(null);
     }
@@ -166,6 +184,7 @@ export default function Navbar({ children }: Readonly<Props>) {
     navigate("/dashboard");
     setOpen2(false);
     setActive(1);
+    setActive2(0);
     setActiveChild(null);
   };
 
@@ -173,8 +192,10 @@ export default function Navbar({ children }: Readonly<Props>) {
     setOpen2(!open2);
     if (!open2) {
       setActive(2);
+      setActive2(0);
     } else {
       setActive(0);
+      setActive2(0);
     }
   };
 
@@ -182,6 +203,7 @@ export default function Navbar({ children }: Readonly<Props>) {
     navigate("/projects/stat");
     setActiveChild(1);
     setActive(2);
+    setActive2(0);
     setOpen2(true);
   };
 
@@ -189,7 +211,32 @@ export default function Navbar({ children }: Readonly<Props>) {
     navigate("/projects/details");
     setActiveChild(2);
     setActive(2);
+    setActive2(0);
     setOpen2(true);
+  };
+
+  const handleClickAbout = () => {
+    navigate("/about");
+    setActiveChild(null);
+    setActive2(1);
+    setActive(0);
+    setOpen2(false);
+  };
+
+  const handleClickContact = () => {
+    navigate("/contact");
+    setActiveChild(null);
+    setActive2(2);
+    setActive(0);
+    setOpen2(false);
+  };
+
+  const handleClickFeedback = () => {
+    navigate("/feedback");
+    setActiveChild(null);
+    setActive2(3);
+    setActive(0);
+    setOpen2(false);
   };
 
   return (
@@ -246,7 +293,9 @@ export default function Navbar({ children }: Readonly<Props>) {
           {["Dashboard", "Projects"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
-                onClick={index === 0 ? handleClickDashboard : handleClickProjects}
+                onClick={
+                  index === 0 ? handleClickDashboard : handleClickProjects
+                }
                 sx={[
                   {
                     minHeight: 48,
@@ -347,6 +396,79 @@ export default function Navbar({ children }: Readonly<Props>) {
         </List>
 
         <Divider />
+
+        <List>
+          {["About", "Contact", "Feedback"].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                onClick={
+                  index === 0 ? handleClickAbout : index === 1 ? handleClickContact 
+                  : handleClickFeedback
+                }
+                sx={[
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                    backgroundColor:
+                      index === active2 - 1 ? "#e6f4ff" : "transparent",
+                    color: index === active2 - 1 ? "#1677ff" : "black",
+                    borderRight:
+                      index === active2 - 1 ? "2px solid #1677ff" : "none",
+                    "&:hover": {
+                      backgroundColor:
+                        index === active2 - 1 ? "#e6f4ff" : "transparent",
+                    },
+                  },
+                  open
+                    ? {
+                        justifyContent: "initial",
+                      }
+                    : {
+                        justifyContent: "center",
+                      },
+                ]}
+              >
+                <ListItemIcon
+                  sx={[
+                    {
+                      minWidth: 0,
+                      justifyContent: "center",
+                      color: index === active2 - 1 ? "#1677ff" : "black",
+                    },
+                    open
+                      ? {
+                          mr: 2,
+                        }
+                      : {
+                          mr: "auto",
+                        },
+                  ]}
+                >
+                  {index === 0 ? (
+                    <SpeedOutlinedIcon style={{ fontSize: "20px" }} />
+                  ) : index === 1 ? (
+                    <WidgetsOutlinedIcon style={{ fontSize: "20px" }} />
+                  ) : (
+                    <InfoOutlinedIcon style={{ fontSize: "20px" }} />
+                  )}
+                </ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  primaryTypographyProps={{ fontSize: "14px" }} // Adjusting the font size for the text
+                  sx={[
+                    open
+                      ? {
+                          opacity: 1,
+                        }
+                      : {
+                          opacity: 0,
+                        },
+                  ]}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
       <Box
         component="main"
