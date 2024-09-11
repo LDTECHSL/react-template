@@ -58,7 +58,7 @@ export default function Dashboard() {
         <div className="content-main-outer">
           <div className="content-main-inner cmi1">
             <div className="content-title">
-              <span className="content-title-text">Cost-Profit Comparison by Month</span>
+              <span className="content-title-text">Cost-Profit Comparison by Month(2023)</span>
             </div>
             <div className="space-bar"></div>
             <MainCard>
