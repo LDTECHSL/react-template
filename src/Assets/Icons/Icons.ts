@@ -10,6 +10,8 @@ import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 
 export {
   MenuIcon,
@@ -23,5 +25,7 @@ export {
   WidgetsOutlinedIcon,
   TrendingDownIcon,
   TrendingUpIcon,
-  InfoOutlinedIcon
+  InfoOutlinedIcon,
+  PhoneOutlinedIcon,
+  FeedbackOutlinedIcon
 };

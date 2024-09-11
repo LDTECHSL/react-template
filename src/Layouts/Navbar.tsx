@@ -19,8 +19,10 @@ import { ReactElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../Common/css/styles.css";
 import {
+  FeedbackOutlinedIcon,
   InfoOutlinedIcon,
   MenuIcon,
+  PhoneOutlinedIcon,
   SpeedOutlinedIcon,
   WidgetsOutlinedIcon,
 } from "../Assets/Icons/Icons";
@@ -29,6 +31,7 @@ import text from "../Assets/Text/Text.json";
 import logo from "../Assets/Images/logo.png";
 import logoutIcon from "../Assets/Images/power.png";
 import Dialogbox from "../Components/Dialogbox";
+import Search from "src/Components/Search";
 
 const drawerWidth = 260;
 
@@ -262,12 +265,13 @@ export default function Navbar({ children }: Readonly<Props>) {
             edge="start"
             sx={[
               {
-                marginRight: 5,
+                marginRight: 2,
               },
             ]}
           >
             <MenuIcon />
           </IconButton>
+            <Search />
           <div className="toolbar-inner">
             <span className="username">Hi, Dasun Shyaminda</span>
             <img
@@ -396,7 +400,6 @@ export default function Navbar({ children }: Readonly<Props>) {
         </List>
 
         <Divider />
-
         <List>
           {["About", "Contact", "Feedback"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
@@ -445,11 +448,11 @@ export default function Navbar({ children }: Readonly<Props>) {
                   ]}
                 >
                   {index === 0 ? (
-                    <SpeedOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : index === 1 ? (
-                    <WidgetsOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : (
                     <InfoOutlinedIcon style={{ fontSize: "20px" }} />
+                  ) : index === 1 ? (
+                    <PhoneOutlinedIcon style={{ fontSize: "20px" }} />
+                  ) : (
+                    <FeedbackOutlinedIcon style={{ fontSize: "20px" }} />
                   )}
                 </ListItemIcon>
                 <ListItemText
@@ -469,6 +472,8 @@ export default function Navbar({ children }: Readonly<Props>) {
             </ListItem>
           ))}
         </List>
+
+        <Divider />
       </Drawer>
       <Box
         component="main"
