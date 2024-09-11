@@ -136,7 +136,7 @@ export default function Navbar({ children }: Readonly<Props>) {
 
   React.useEffect(() => {
     const path = location.pathname;
-    if (path === "/stat") {
+    if (path === "/projects/stat") {
       setActive(2);
       setOpen2(true);
       setActiveChild(1);
@@ -144,7 +144,11 @@ export default function Navbar({ children }: Readonly<Props>) {
       setActive(1);
       setOpen2(false);
       setActiveChild(null);
-    } else {
+    } else if (path === "/projects/details") {
+      setActive(2);
+      setOpen2(true);
+      setActiveChild(2);
+    }else {
       setActive(0);
       setOpen2(false);
       setActiveChild(null);
@@ -174,12 +178,15 @@ export default function Navbar({ children }: Readonly<Props>) {
   const handleClickStats = (childIndex: number) => {
     setActiveChild(childIndex);
     if (activeChild !== childIndex) {
-      navigate("/stat");
+      navigate("/projects/stat");
     }
   };
 
   const handleClickDetails = (childIndex: number) => {
     setActiveChild(childIndex);
+    if (activeChild !== childIndex) {
+      navigate("/projects/details");
+    }
   };
 
   return (

@@ -1,9 +1,9 @@
 import Navbar from "src/Layouts/Navbar";
 
-export default function StatPage(){
+export default function DetailsPage(){
     return(
         <Navbar>
-            <div>Stats</div>
+            <div>Details</div>
         </Navbar>        
     )
 }
