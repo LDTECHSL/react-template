@@ -134,16 +134,19 @@ export default function Navbar({ children }: Readonly<Props>) {
   const navigate = useNavigate();
   const location = useLocation();
 
+
+  
+
   React.useEffect(() => {
     const path = location.pathname;
-    if (path === "/projects/stat") {
-      setActive(2);
-      setOpen2(true);
-      setActiveChild(1);
-    } else if (path === "/dashboard") {
+    if (path === "/dashboard") {
       setActive(1);
       setOpen2(false);
       setActiveChild(null);
+    } else if (path === "/projects/stat") {
+      setActive(2);
+      setOpen2(true);
+      setActiveChild(1);
     } else if (path === "/projects/details") {
       setActive(2);
       setOpen2(true);
