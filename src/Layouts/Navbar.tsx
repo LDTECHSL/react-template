@@ -148,7 +148,7 @@ export default function Navbar({ children }: Readonly<Props>) {
       setActive(2);
       setOpen2(true);
       setActiveChild(2);
-    }else {
+    } else {
       setActive(0);
       setOpen2(false);
       setActiveChild(null);
@@ -175,18 +175,18 @@ export default function Navbar({ children }: Readonly<Props>) {
     }
   };
 
-  const handleClickStats = (childIndex: number) => {
-    setActiveChild(childIndex);
-    if (activeChild !== childIndex) {
-      navigate("/projects/stat");
-    }
+  const handleClickStats = () => {
+    navigate("/projects/stat");
+    setActiveChild(1);
+    setActive(2);
+    setOpen2(true);
   };
 
-  const handleClickDetails = (childIndex: number) => {
-    setActiveChild(childIndex);
-    if (activeChild !== childIndex) {
-      navigate("/projects/details");
-    }
+  const handleClickDetails = () => {
+    navigate("/projects/details");
+    setActiveChild(2);
+    setActive(2);
+    setOpen2(true);
   };
 
   return (
@@ -314,7 +314,7 @@ export default function Navbar({ children }: Readonly<Props>) {
                 <Collapse in={open2} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleClickStats(1)}>
+                      <ListItemButton onClick={handleClickStats}>
                         <ListItemText
                           primary="Stats"
                           primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
@@ -325,7 +325,7 @@ export default function Navbar({ children }: Readonly<Props>) {
                       </ListItemButton>
                     </ListItem>
                     <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={() => handleClickDetails(2)}>
+                      <ListItemButton onClick={handleClickDetails}>
                         <ListItemText
                           primary="Details"
                           primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
