@@ -2,15 +2,14 @@
 import BasicLineChart from "src/Components/LineChart";
 import "../Common/css/styles.css";
 import Stat_card from "../Components/StatCard";
-import Navbar from "../Layouts/Navbar";
 import { MainCard } from "src/Components/Card";
 import PieActiveArc from "src/Components/PieChart";
 import DataTable from "src/Components/Table";
 
 export default function Dashboard() {
   return (
-      <div className="dashboard-outer">
-        <div className="dashboard-header-outer">
+      <div className="comman-outer">
+        <div className="comman-header-outer">
           <span className="content-title-text">Dashboard</span>
         </div>
         <div className="space-bar"></div>

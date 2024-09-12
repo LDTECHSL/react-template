@@ -1,0 +1,17 @@
+.constructions-outer{
+    width: 100%;
+    height: auto;
+    padding: 15px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.set-padding{
+    padding: 5px 0 15px 0 !important;
+
+}
+
+.constructions-image{
+    width: 55%;
+}
