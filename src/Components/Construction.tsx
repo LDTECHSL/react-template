@@ -17,7 +17,7 @@ export default function Construction() {
           />
         </div>
         <div className="constructions-outer set-padding">
-          <span>Back in to the <span>Dashboard</span> page.</span>
+          <span>We’re currently working on this page to enhance your experience.Back in to the <span>Dashboard</span> page.</span>
         </div>
       </div>
     </MainCard>
