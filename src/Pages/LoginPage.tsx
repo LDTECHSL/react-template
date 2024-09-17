@@ -53,7 +53,6 @@ const LoginPage = () => {
             {text.loginPage.loginButton}
             </Button>
           </div>
-          <Footer/>
         </div>
       </Card>
     </AuthLogin>
