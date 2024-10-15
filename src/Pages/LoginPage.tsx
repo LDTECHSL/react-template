@@ -3,16 +3,25 @@ import "../Common/css/styles.css";
 import Footer from "../Components/Footer";
 import AuthLogin from "../Layouts/AuthLogin";
 import Card from "../Components/Card";
-import text from "../Assets/Text/Text.json"
+import text from "../Assets/Text/Text.json";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const LoginPage = () => {
-
   const navigate = useNavigate();
+  
+  // State to manage input values
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('password');
 
   const handleLogin = () => {
-    navigate("/home")
-  }
+    // Replace this with your actual authentication logic
+    if (username === "admin" && password === "password") {
+      navigate("/home");
+    } else {
+      alert("Invalid username or password");
+    }
+  };
 
   return (
     <AuthLogin>
@@ -28,6 +37,8 @@ const LoginPage = () => {
               label="Username"
               variant="outlined"
               fullWidth
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // Update state on change
             />
           </div>
           <div className="login-head-outer">
@@ -38,6 +49,8 @@ const LoginPage = () => {
               variant="outlined"
               fullWidth
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // Update state on change
             />
           </div>
           <div className="login-head-outer">
@@ -50,7 +63,7 @@ const LoginPage = () => {
           </div>
           <div className="login-head-outer">
             <Button className="login-btn" variant="contained" onClick={handleLogin}>
-            {text.loginPage.loginButton}
+              {text.loginPage.loginButton}
             </Button>
           </div>
         </div>
