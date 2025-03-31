@@ -253,7 +253,7 @@ export default function Navbar({ children }: Readonly<Props>) {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <div className="drawer-header">
-          <img className="drawer-logo" src={logo} alt="" />
+          <img className="drawer-logo" src={logo} alt="" /> 
         </div>
         <List>
           <List>

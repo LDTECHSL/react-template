@@ -13,6 +13,12 @@
 
 .drawer-logo{
     width: 60px !important;
+    margin-right: 5px !important;
+}
+
+.drawer-logo-txt{
+    font-size: 23px;
+    font-weight: bold
 }
 
 .drawer-header{

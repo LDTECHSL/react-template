@@ -6,27 +6,36 @@ import Card from "../Components/Card";
 import text from "../Assets/Text/Text.json";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import Spinner from "src/Components/Spinner";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  
+
   // State to manage input values
   const [username, setUsername] = useState('admin');
   const [password, setPassword] = useState('password');
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = () => {
-    // Replace this with your actual authentication logic
     if (username === "admin" && password === "password") {
-      navigate("/home");
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/home");
+      }, 3000);
     } else {
       alert("Invalid username or password");
     }
   };
+  
+  
 
   return (
     <AuthLogin>
       <Card>
         <div className="login-main-outer">
+          <Spinner isLoading={loading} />
           <div className="login-head-outer">
             <span className="content-header-text">{text.loginPage.header}</span>
           </div>

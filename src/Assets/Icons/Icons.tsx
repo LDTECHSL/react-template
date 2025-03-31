@@ -4,7 +4,9 @@ import {
     PlusOutlined,
     ReloadOutlined,
     DownloadOutlined,
-    UndoOutlined
+    UndoOutlined,
+    DeleteFilled,
+    CheckOutlined
 } from "@ant-design/icons";
 import { TrendingDown, TrendingUp } from '@mui/icons-material';
 
@@ -15,5 +17,7 @@ export const CustomIcons = {
     Download: <DownloadOutlined />,
     Clear: <UndoOutlined />,
     TrendingDown : <TrendingDown />,
-    TrendingUp: <TrendingUp />
+    TrendingUp: <TrendingUp />,
+    Delete : <DeleteFilled/>,
+    Success : <CheckOutlined />
 };

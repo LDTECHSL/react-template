@@ -1,5 +1,5 @@
 window.env = {
     BASE_URL: "",
-    VERSION: "2024.08.30.1.0",
-    COMPANY: "2024 ABC Software Engineering. All rights reserved"
+    VERSION: "2025.03.31.1",
+    COMPANY: "2025 DMS Software Engineering. All rights reserved"
   };
