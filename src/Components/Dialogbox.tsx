@@ -32,12 +32,12 @@ export default function Dialogbox(props: Dialogboxprops) {
       </DialogContent>
       <DialogActions>
         <Button onClick={() => { props.onDisagree(); props.onClose();}}
-            style={{ color: '#1677ff', backgroundColor: 'white'}}
+            style={{ color: '#e67e22', backgroundColor: 'white'}}
             >
             {props.disagreeButtonText}
         </Button>
         <Button onClick={() => { props.onAgree(); props.onClose();}} autoFocus
-            style={{ color: '#1677ff', backgroundColor: 'white'}}
+            style={{ color: '#e67e22', backgroundColor: 'white'}}
             >
             {props.agreeButtonText}
         </Button>

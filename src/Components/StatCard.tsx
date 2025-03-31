@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import { TrendingDownIcon, TrendingUpIcon } from "../Assets/Icons/Icons";
+import { CustomIcons } from "src/Assets/Icons/Icons";
 import "../Common/css/stat_card.css";
 
 interface StatCardProps {
@@ -35,7 +35,7 @@ interface PercentageCardProps {
 export function Percentage_card_up({ percentage }: PercentageCardProps) {
     return (
         <div className="p-card-outer">
-            <TrendingUpIcon className="up-icon" />
+            <span className="up-icon">{CustomIcons.TrendingUp}</span>
             <span className="percentage-text">{percentage}</span>
         </div>
     );
@@ -44,7 +44,7 @@ export function Percentage_card_up({ percentage }: PercentageCardProps) {
 export function Percentage_card_down({ percentage }: PercentageCardProps) {
     return (
         <div className="p-card-outer down">
-            <TrendingDownIcon className="down-icon" />
+            <span className="down-icon">{CustomIcons.TrendingDown}</span>
             <span className="percentage-text down-text">{percentage}</span>
         </div>
     );

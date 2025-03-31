@@ -21,8 +21,6 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/home" element={<Landing />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/projects/stat" element={<Stats />} />
-            <Route path="/projects/details" element={<Details />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/feedback" element={<FeedbackPage />} />

@@ -38,9 +38,29 @@ const LoginPage = () => {
               variant="outlined"
               fullWidth
               value={username}
-              onChange={(e) => setUsername(e.target.value)} // Update state on change
+              onChange={(e) => setUsername(e.target.value)}
+              sx={{
+                '& input': {
+                  color: 'black',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey', // Default border color
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e67e22', // Orange border when focused
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'grey', // Default label color
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#d35400', // Orange label when focused
+                },
+              }}
             />
           </div>
+
           <div className="login-head-outer">
             <TextField
               id="outlined-basic"
@@ -50,7 +70,26 @@ const LoginPage = () => {
               fullWidth
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update state on change
+              onChange={(e) => setPassword(e.target.value)}
+              sx={{
+                '& input': {
+                  color: 'black',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey', // Default border color
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e67e22', // Orange border when focused
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'grey', // Default label color
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#d35400', // Orange label when focused
+                },
+              }}
             />
           </div>
           <div className="login-head-outer">

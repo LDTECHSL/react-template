@@ -11,7 +11,6 @@ export default function PieActiveArc() {
           highlightScope: { fade: 'global', highlight: 'item' },
           faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
           valueFormatter,
-          // The color is now set per item, no need to define it here
         },
       ]}
       height={200}

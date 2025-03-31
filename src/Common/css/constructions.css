@@ -1,3 +1,5 @@
+@import url("../css/global.css");
+
 .constructions-outer{
     width: 100%;
     height: auto;
@@ -17,6 +19,6 @@
 }
 
 .link-text{
-    color: #1677ff;
+    color: var(--primary-color);
     text-decoration: none;
 }

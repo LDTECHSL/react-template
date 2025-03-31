@@ -12,28 +12,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ReactElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../Common/css/styles.css";
-import {
-  FeedbackOutlinedIcon,
-  InfoOutlinedIcon,
-  MenuIcon,
-  PhoneOutlinedIcon,
-  SpeedOutlinedIcon,
-  WidgetsOutlinedIcon,
-} from "../Assets/Icons/Icons";
+import "../Common/css/navbar.css";
+import { MenuOutlined, MessageOutlined, PhoneOutlined } from "@mui/icons-material";
 import Footer from "../Components/Footer";
-import text from "../Assets/Text/Text.json";
-import logo from "../Assets/Images/logo.png";
+import logo from "../Assets/Images/hdts.png";
 import logoutIcon from "../Assets/Images/power.png";
 import Dialogbox from "../Components/Dialogbox";
-import Search from "src/Components/Search";
+import { DashboardOutlined, InfoCircleOutlined } from "@ant-design/icons";
 
-const drawerWidth = 260;
+const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -118,11 +107,33 @@ interface Props {
 
 export default function Navbar({ children }: Readonly<Props>) {
   const [open, setOpen] = React.useState(true);
-  const [open2, setOpen2] = React.useState(false);
   const [active, setActive] = React.useState(0);
   const [active2, setActive2] = React.useState(0);
-  const [activeChild, setActiveChild] = React.useState<number | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [roleType, setRoleType] = React.useState(1);
+
+  let user = localStorage.getItem("username")
+  const des = localStorage.getItem("designation")
+
+  React.useEffect(() => {
+
+    let timeoutId: NodeJS.Timeout;
+    if (open) {
+      timeoutId = setTimeout(() => {
+        const userElement = document.querySelector(".drawer-user");
+        if (userElement) {
+          (userElement as HTMLElement).style.opacity = "1";
+        }
+      }, 50);
+    } else {
+      const userElement = document.querySelector(".drawer-user");
+      if (userElement) {
+        (userElement as HTMLElement).style.opacity = "0";
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [open]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -134,6 +145,7 @@ export default function Navbar({ children }: Readonly<Props>) {
 
   const handleLogout = () => {
     navigate("/");
+    localStorage.setItem("token", "")
   };
 
   const navigate = useNavigate();
@@ -141,41 +153,16 @@ export default function Navbar({ children }: Readonly<Props>) {
 
   React.useEffect(() => {
     const path = location.pathname;
-    if (path === "/dashboard") {
-      setActive(1);
-      setActive2(0);
-      setOpen2(false);
-      setActiveChild(null);
-    } else if (path === "/projects/stat") {
+    if (path === "/dashboard"){
+      setActive(1)
+    } else if (path === "/contact") {
       setActive(2);
-      setActive2(0);
-      setOpen2(true);
-      setActiveChild(1);
-    } else if (path === "/projects/details") {
-      setActive(2);
-      setActive2(0);
-      setOpen2(true);
-      setActiveChild(2);
-    }else if (path === "/about") {
-      setActive2(1);
-      setActive(0);
-      setOpen2(false);
-      setActiveChild(null);
-    }else if (path === "/contact") {
-      setActive2(2);
-      setActive(0);
-      setOpen2(false);
-      setActiveChild(null);
-    }else if (path === "/feedback") {
-      setActive2(3);
-      setActive(0);
-      setOpen2(false);
-      setActiveChild(null);
+    } else if (path === "/about") {
+      setActive(3)
+    } else if (path === "/feedback") {
+      setActive(4)
     } else {
       setActive(0);
-      setActive2(0);
-      setOpen2(false);
-      setActiveChild(null);
     }
   }, [location.pathname]);
 
@@ -185,62 +172,42 @@ export default function Navbar({ children }: Readonly<Props>) {
 
   const handleClickDashboard = () => {
     navigate("/dashboard");
-    setOpen2(false);
-    setActive(1);
-    setActive2(0);
-    setActiveChild(null);
-  };
-
-  const handleClickProjects = () => {
-    setOpen2(!open2);
-    if (!open2) {
-      setActive(2);
-      setActive2(0);
-    } else {
-      setActive(0);
-      setActive2(0);
-    }
-  };
-
-  const handleClickStats = () => {
-    navigate("/projects/stat");
-    setActiveChild(1);
-    setActive(2);
-    setActive2(0);
-    setOpen2(true);
-  };
-
-  const handleClickDetails = () => {
-    navigate("/projects/details");
-    setActiveChild(2);
-    setActive(2);
-    setActive2(0);
-    setOpen2(true);
   };
 
   const handleClickAbout = () => {
     navigate("/about");
-    setActiveChild(null);
-    setActive2(1);
-    setActive(0);
-    setOpen2(false);
   };
 
   const handleClickContact = () => {
     navigate("/contact");
-    setActiveChild(null);
-    setActive2(2);
-    setActive(0);
-    setOpen2(false);
   };
 
   const handleClickFeedback = () => {
     navigate("/feedback");
-    setActiveChild(null);
-    setActive2(3);
-    setActive(0);
-    setOpen2(false);
   };
+
+  const drawerItems = [    
+    {
+      name: "Dashboard",
+      icon: <DashboardOutlined style={{ fontSize: "20px" }} />,
+      onClick: handleClickDashboard
+    },
+    {
+      name: "Contact",
+      icon: <PhoneOutlined style={{ fontSize: "20px" }} />, 
+      onClick: handleClickContact
+    },
+    {
+      name: "About",
+      icon: <InfoCircleOutlined style={{ fontSize: "20px" }} />, 
+      onClick: handleClickAbout
+    },
+    {
+      name: "Feedback",
+      icon: <MessageOutlined style={{ fontSize: "20px" }} />,
+      onClick: handleClickFeedback
+    }
+  ];
 
   return (
     <Box
@@ -269,11 +236,12 @@ export default function Navbar({ children }: Readonly<Props>) {
               },
             ]}
           >
-            <MenuIcon />
+            <MenuOutlined />
           </IconButton>
-            <Search />
+          <span className="title">HDTS Reservation Module</span>
           <div className="toolbar-inner">
-            <span className="username">Hi, Dasun Shyaminda</span>
+            
+            <span className="username">Hi, {user}</span>
             <img
               onClick={handleOpen}
               className="logout-icon"
@@ -286,194 +254,79 @@ export default function Navbar({ children }: Readonly<Props>) {
       <Drawer variant="permanent" open={open}>
         <div className="drawer-header">
           <img className="drawer-logo" src={logo} alt="" />
-          <span className="login-header-text">{text.authLoginPage.header}</span>
         </div>
-        {open && (
-          <div className="dashboard-title-outer">
-            <span className="dashboard-title">Dashboard</span>
-          </div>
-        )}
         <List>
-          {["Dashboard", "Projects"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                onClick={
-                  index === 0 ? handleClickDashboard : handleClickProjects
-                }
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                    backgroundColor:
-                      index === active - 1 ? "#e6f4ff" : "transparent",
-                    color: index === active - 1 ? "#1677ff" : "black",
-                    borderRight:
-                      index === active - 1 ? "2px solid #1677ff" : "none",
-                    "&:hover": {
+          <List>
+            {drawerItems.map((item, index) => (
+              <React.Fragment key={index}>
+                <ListItem disablePadding sx={{ display: "block" }}>
+                  <ListItemButton
+                    onClick={item.onClick}
+                    sx={{
+                      minHeight: 48,
+                      px: 2.5,
                       backgroundColor:
-                        index === active - 1 ? "#e6f4ff" : "transparent",
-                    },
-                  },
-                  open
-                    ? {
-                        justifyContent: "initial",
-                      }
-                    : {
-                        justifyContent: "center",
+                        index === active - 1 ? "rgba(230, 125, 34, 0.15)" : "transparent",
+                      color: index === active - 1 ? "#0047aa" : "black",
+                      borderRight:
+                        index === active - 1 ? "2px solid #e67e22" : "none",
+                      "&:hover": {
+                        backgroundColor:
+                          index === active - 1 ? "rgba(230, 125, 34, 0.15)" : "transparent",
                       },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: "center",
-                      color: index === active - 1 ? "#1677ff" : "black",
-                    },
-                    open
-                      ? {
-                          mr: 2,
-                        }
-                      : {
-                          mr: "auto",
-                        },
-                  ]}
-                >
-                  {index === 0 ? (
-                    <SpeedOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : (
-                    <WidgetsOutlinedIcon style={{ fontSize: "20px" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  primaryTypographyProps={{ fontSize: "14px" }} // Adjusting the font size for the text
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-                {index === 1 && open ? (
-                  open2 ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )
-                ) : null}
-              </ListItemButton>
-              {index === 1 ? (
-                <Collapse in={open2} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={handleClickStats}>
-                        <ListItemText
-                          primary="Stats"
-                          primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
-                          sx={{
-                            color: activeChild === 1 ? "#1677ff" : "black",
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                    <ListItem sx={{ pl: 6 }}>
-                      <ListItemButton onClick={handleClickDetails}>
-                        <ListItemText
-                          primary="Details"
-                          primaryTypographyProps={{ fontSize: "14px" }} // Adjust font size for child items
-                          sx={{
-                            color: activeChild === 2 ? "#1677ff" : "black",
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                    {/* Add more child items as needed */}
-                  </List>
-                </Collapse>
-              ) : null}
-            </ListItem>
-          ))}
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        justifyContent: "center",
+                        color: index === active - 1 ? "#e67e22" : "black",
+                        mr: open ? 2 : "auto",
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.name}
+                      primaryTypographyProps={{ fontSize: "14px" }}
+                      sx={{ opacity: open ? 1 : 0, color: index === active - 1 ? "#e67e22" : "black" }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </React.Fragment>
+            ))}
+          </List>
         </List>
 
         <Divider />
-        <List>
-          {["About", "Contact", "Feedback"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                onClick={
-                  index === 0 ? handleClickAbout : index === 1 ? handleClickContact 
-                  : handleClickFeedback
-                }
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                    backgroundColor:
-                      index === active2 - 1 ? "#e6f4ff" : "transparent",
-                    color: index === active2 - 1 ? "#1677ff" : "black",
-                    borderRight:
-                      index === active2 - 1 ? "2px solid #1677ff" : "none",
-                    "&:hover": {
-                      backgroundColor:
-                        index === active2 - 1 ? "#e6f4ff" : "transparent",
-                    },
-                  },
-                  open
-                    ? {
-                        justifyContent: "initial",
-                      }
-                    : {
-                        justifyContent: "center",
-                      },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: "center",
-                      color: index === active2 - 1 ? "#1677ff" : "black",
-                    },
-                    open
-                      ? {
-                          mr: 2,
-                        }
-                      : {
-                          mr: "auto",
-                        },
-                  ]}
-                >
-                  {index === 0 ? (
-                    <InfoOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : index === 1 ? (
-                    <PhoneOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : (
-                    <FeedbackOutlinedIcon style={{ fontSize: "20px" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  primaryTypographyProps={{ fontSize: "14px" }} // Adjusting the font size for the text
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-
         <Divider />
+        <div className="drawer-user1">
+          <span
+            className="drawer-user-icon1"
+            style={{
+              display: open ? "none" : "flex",
+              alignItems: "center",
+              padding: "16px",
+            }}
+          >
+            {user?.substring(0, 1)}
+          </span>
+          <span className="drawer-username"></span>
+        </div>
+
+        <div
+          className="drawer-user"
+          style={{
+            display: open ? "flex" : "none",
+            alignItems: "center",
+            padding: "16px",
+            opacity: 0,
+            transition: "opacity 0.3s ease-in-out",
+          }}
+        >
+          <span className="drawer-user-icon">{user?.substring(0, 1)}</span>
+          <span className="drawer-username">{user}</span>
+        </div>
       </Drawer>
       <Box
         component="main"
@@ -491,7 +344,6 @@ export default function Navbar({ children }: Readonly<Props>) {
         <DrawerHeader />
         {children}
       </Box>
-
       <Footer />
     </Box>
   );

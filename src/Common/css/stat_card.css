@@ -47,8 +47,8 @@
 
 .p-card-outer{
     width: auto;
-    height: 25px;
-    padding: 0 4px;
+    height: 30px;
+    padding: 4px;
     border: 1px solid #1677ff;
     border-radius: 5px;
     margin-left: 20px;
@@ -61,18 +61,18 @@
 .percentage-text{
     color: #1677ff;
     font-size: 13px;
-    margin: 0 5px;
+    margin: 5px;
 }
 
 .up-icon{
     font-size: 15px;
-    margin: 0 5px;
+    margin: 5px;
     color: #1677ff;
 }
 
 .down-icon{
     font-size: 15px;
-    margin: 0 5px;
+    margin: 5px;
     color: orange;
 }
 

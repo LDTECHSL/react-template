@@ -1,5 +1,5 @@
 import "../Common/css/styles.css";
-import logo from "../Assets/Images/logo.png";
+import logo from "../Assets/Images/hdts.png";
 import { ReactElement } from "react";
 import text from "../Assets/Text/Text.json"
 
